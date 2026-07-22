@@ -32,7 +32,7 @@ Netset is a Django web application that connects job seekers with businesses.
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Netset.git
+git clone https://github.com/egwaborehis/Netset.git
 
 cd Netset
 
