@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | Netset
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <h1>Your Dashboard</h1>
+
+    <p>Welcome back, {{ user.username }}.</p>
+
+    <hr>
+
+    <h2>Your Profile</h2>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <p><strong>First Name:</strong> {{ user.profile.first_name|default:"Not provided" }}</p>
+    <p><strong>Last Name:</strong> {{ user.profile.last_name|default:"Not provided" }}</p>
+    <p><strong>Location:</strong> {{ user.profile.location|default:"Not provided" }}</p>
+    <p><strong>Phone:</strong> {{ user.profile.phone|default:"Not provided" }}</p>
+
+    <p><strong>Bio:</strong></p>
+    <p>{{ user.profile.bio|default:"No bio yet." }}</p>
+
+    <a href="{% url 'edit_profile' %}" class="dashboard-button">
+        Edit Profile
+    </a>
+
+    <hr>
+
+    {% if user.is_job_seeker %}
+        <section class="dashboard-section">
+            <h2>Job Seeker</h2>
+
+            <p>Search for entry-level jobs and manage your applications.</p>
+
+            <a href="#" class="dashboard-button">Browse Jobs</a>
+            <a href="#" class="dashboard-button">My Applications</a>
+        </section>
+    {% endif %}
+
+    {% if user.is_business_owner %}
+        <section class="dashboard-section">
+            <h2>Business Owner</h2>
+
+            <p>Create job listings and manage applicants.</p>
+
+            <a href="#" class="dashboard-button">Post a Job</a>
+            <a href="#" class="dashboard-button">My Job Listings</a>
+            <a href="#" class="dashboard-button">View Applicants</a>
+        </section>
+    {% endif %}
+
+</div>
+
+{% endblock %}

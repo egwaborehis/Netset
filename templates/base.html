@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netset</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="container header-container">
+
+            <h1 class="logo">Netset</h1>
+
+            <nav>
+            
+                <a href="/">Home</a>
+                <a href="#">Jobs</a>
+                <a href="#">Businesses</a>
+            
+                {% if user.is_authenticated %}
+            
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        Logout
+                    </button>
+                </form>
+            
+                <span class="welcome-text">
+                    Welcome, {{ user.username }}
+                </span>
+            
+                {% else %}
+            
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            
+                {% endif %}
+            
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>
